@@ -78,7 +78,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: FuturaPT
+      fonts:
+        - asset: assets/fonts/FuturaPTBook.otf
+        - asset: assets/fonts/FuturaPTBold.otf
+        - asset: assets/fonts/FuturaPTDemi.otf
+        - asset: assets/fonts/FuturaPTExtraBold.otf
+        - asset: assets/fonts/FuturaPTHeavy.otf
+        - asset: assets/fonts/FuturaPTLight.otf
+        - asset: assets/fonts/FuturaPTMedium.otf
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
