@@ -9,7 +9,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // this line is temporary for testing purpose
-  await Future.delayed(const Duration(seconds: 10));
+  await Future.delayed(const Duration(seconds: 5));
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
