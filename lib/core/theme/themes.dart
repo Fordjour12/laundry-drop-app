@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
 
 class MyAppThemeMode {
   static const String light = "light";
@@ -6,15 +7,28 @@ class MyAppThemeMode {
   static const String system = "system";
 
   static final ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
     useMaterial3: true,
-    primarySwatch: Colors.blue,
+    fontFamily: "FuturaPT",
+    colorScheme: const ColorScheme.light(
+      background: MyAppColorSwatch.secondaryColor,
+      brightness: Brightness.light,
+      primary: MyAppColorSwatch.primaryColor,
+      secondary: MyAppColorSwatch.secondaryColor,
+      tertiary: MyAppColorSwatch.tertiaryColor,
+    ),
   );
 
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     useMaterial3: true,
-    primarySwatch: Colors.yellow,
+    fontFamily: "FuturaPT",
+    colorScheme: const ColorScheme.dark(
+      background: MyAppColorSwatch.primaryColorDark,
+      brightness: Brightness.dark,
+      primary: MyAppColorSwatch.primaryColorDark,
+      secondary: MyAppColorSwatch.secondaryColorDark,
+      tertiary: MyAppColorSwatch.tertiaryColorDark,
+    ),
   );
 
 // will perform this action latter down the pipeline
