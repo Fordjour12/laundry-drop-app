@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -6,17 +7,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home Page"),
-      ),
-      body: const Center(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: Center(
         child: Text(
           "HomePage",
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
+          style: MyAppTypography.body1,
         ),
       ),
     );
