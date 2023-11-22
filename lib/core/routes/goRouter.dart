@@ -1,24 +1,31 @@
 // ignore: file_names
 import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/app/home/home_page.dart';
+import 'package:in.laundrydrop.app/app/settings/settings_page.dart';
 import 'package:in.laundrydrop.app/app/tabnavigationbar/tab_bottom_navigator_page.dart';
 
 class MyAppRouter {
-  GoRouter router = GoRouter(
+  final GoRouter router = GoRouter(
     routes: [
       ShellRoute(
-        routes: [
+        routes: <RouteBase>[
           GoRoute(
             path: "/",
-            builder: (context, state) => const HomePage(),
+            name: "home",
+            builder: (context, state) => HomePage(
+              key: state.pageKey,
+            ),
           ),
           GoRoute(
             path: "/settings",
-            builder: (context, state) => const HomePage(),
+            name: "settings",
+            builder: (context, state) => SettingsPage(
+              key: state.pageKey,
+            ),
           ),
         ],
         builder: (context, state, child) => TabBottomNavigatorPage(
-          state: state,
+          state: state.pageKey,
           child: child,
         ),
       ),
