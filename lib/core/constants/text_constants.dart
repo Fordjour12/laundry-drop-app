@@ -32,10 +32,10 @@ class MyAppTypography {
   );
 
   static const TextStyle hd24b = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.w700,
-    height: 1.25,
-  );
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      height: 1.25,
+      color: MyAppColorSwatch.tertiaryColorDarkShade1);
 
   static ButtonStyle cbs(double width) {
     return ButtonStyle(
@@ -45,6 +45,15 @@ class MyAppTypography {
       backgroundColor: MaterialStateProperty.all(
         MyAppColorSwatch.tertiaryColorDarkShade1,
       ),
+    );
+  }
+
+  static TextStyle bd10_(FontWeight weight, Color color) {
+    return TextStyle(
+      fontSize: 13,
+      fontWeight: weight,
+      color: color,
+      height: 1.6,
     );
   }
 
