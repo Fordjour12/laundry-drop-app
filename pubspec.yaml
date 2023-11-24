@@ -89,6 +89,19 @@ flutter:
         - asset: assets/fonts/FuturaPTLight.otf
         - asset: assets/fonts/FuturaPTMedium.otf
 
+    - family: HelveticaNeue
+      fonts:
+        - asset: assets/fonts/Regular.otf
+          weight: 400
+        - asset: assets/fonts/Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Light.otf
+          weight: 200
+        - asset: assets/fonts/Medium.otf
+          weight: 500
+        - asset: assets/fonts/Thin.otf
+          weight: 100
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
