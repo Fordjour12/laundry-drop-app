@@ -1,9 +1,52 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
+import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
 
 class MyAppTypography {
   MyAppTypography._();
+
+  // bd = body
+  // hd = heading
+  // bt = button
+  // cbs = custom button style
+  // b = bold, m = medium, bl = black, l = light, r = regular
+  // eg: bd18m = body 18 medium
+  //
+
+  static const TextStyle bd18m = TextStyle(
+    fontSize: 18,
+    letterSpacing: 1.5,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle hd32b = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
+  );
+
+  static TextStyle bt18b = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    height: 1.5,
+    color: MyAppColorSwatch.secondaryColorDark,
+  );
+
+  static const TextStyle hd24b = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
+  );
+
+  static ButtonStyle cbs(double width) {
+    return ButtonStyle(
+      minimumSize: MaterialStateProperty.all(
+        Size(width, 53),
+      ),
+      backgroundColor: MaterialStateProperty.all(
+        MyAppColorSwatch.tertiaryColorDarkShade1,
+      ),
+    );
+  }
 
   static const TextStyle h1 = TextStyle(
     fontSize: 96,
@@ -35,10 +78,9 @@ class MyAppTypography {
     fontSize: 14,
     letterSpacing: 0.1,
   );
-  static TextStyle body1 = TextStyle(
+  static TextStyle body1 = const TextStyle(
     fontSize: 16,
     letterSpacing: 0.5,
-    color: Theme.of(context as BuildContext).colorScheme.primary,
   );
 
   static const TextStyle body2 = TextStyle(

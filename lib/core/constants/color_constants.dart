@@ -10,6 +10,8 @@ class MyAppColorSwatch {
   static const Color primaryColorDark = Color(0xFF0B012E);
   static const Color secondaryColorDark = Color(0xFFF8F7FD);
   static const Color tertiaryColorDark = Color(0xFF1E025A);
+  static const Color tertiaryColorDarkShade1 = Color(0xFF3E0BAC);
+
 
   static const shades1 = Color(0xFF0B012E);
   static const shades2 = Color(0xFF140259);

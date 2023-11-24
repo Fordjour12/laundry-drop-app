@@ -8,7 +8,7 @@ class MyAppThemeMode {
 
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: "FuturaPT",
+    fontFamily: "HelveticaNeue",
     colorScheme: const ColorScheme.light(
       background: MyAppColorSwatch.secondaryColor,
       brightness: Brightness.light,
@@ -21,7 +21,7 @@ class MyAppThemeMode {
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     useMaterial3: true,
-    fontFamily: "FuturaPT",
+    fontFamily: "HelveticaNeue",
     colorScheme: const ColorScheme.dark(
       background: MyAppColorSwatch.primaryColorDark,
       brightness: Brightness.dark,
