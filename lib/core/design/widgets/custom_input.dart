@@ -13,14 +13,14 @@ class CustomInput extends StatelessWidget {
 // Handling the onSaved event of the TextFormField to save the field value when the form is submitted.
 // Displaying a message to the user when the form is submitted and validation fails
   const CustomInput({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.hintText,
     required this.obscureText,
     required this.keyboardType,
     required this.controller,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   static const OutlineInputBorder border = OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(10)),

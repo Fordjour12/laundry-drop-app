@@ -6,7 +6,7 @@ import 'package:in.laundrydrop.app/core/design/widgets/bottom_layout_container.d
 import 'package:in.laundrydrop.app/core/design/widgets/custom_form.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
