@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
 import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
-import 'package:in.laundrydrop.app/core/design/widgets/customButton.dart';
+import 'package:in.laundrydrop.app/core/design/widgets/custom_button.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
