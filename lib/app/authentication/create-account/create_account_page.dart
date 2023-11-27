@@ -23,7 +23,7 @@ class CreateAccountPage extends StatelessWidget {
             ),
           ),
           BottomLayoutContainer(
-            height: 0.60,
+            height: 0.62,
             child: Column(
               children: <Widget>[
                 const Column(
@@ -56,7 +56,34 @@ class CreateAccountPage extends StatelessWidget {
                   onPressed: () {
                     print("Create Account button pressed");
                   },
-                )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      "Already have an account?",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        height: 21 / 14,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        print("Sign In button pressed");
+                      },
+                      child: const Text(
+                        "Sign In",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          height: 21 / 14,
+                          color: MyAppColorSwatch.tertiaryColorDarkShade1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
