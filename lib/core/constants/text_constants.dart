@@ -32,10 +32,11 @@ class MyAppTypography {
   );
 
   static const TextStyle hd24b = TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.w700,
-      height: 1.25,
-      color: MyAppColorSwatch.tertiaryColorDarkShade1);
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
+    // color: MyAppColorSwatch.tertiaryColorDarkShade1,
+  );
 
   static ButtonStyle cbs(double width) {
     return ButtonStyle(
