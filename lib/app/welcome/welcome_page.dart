@@ -3,29 +3,22 @@ import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
 import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_button.dart';
+import 'package:in.laundrydrop.app/core/utils/video_player_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            alignment: Alignment.center,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: MyAppColorSwatch.tertiaryColor,
-            child: const Text(
-              "Main container for image",
-              style: TextStyle(
-                backgroundColor: MyAppColorSwatch.secondaryColor,
-                fontSize: 24,
-                height: 1.5,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+          Consumer<VideoPlayerProvider>(
+            builder: ((context, value,_ ) {
+              return VideoPlayer(value.controller);
+            }),
           ),
           Positioned(
             bottom: 0,
