@@ -11,7 +11,7 @@ class MyAppRouter {
   final GoRouter router = GoRouter(
     // routes: [
     // ShellRoute(
-    initialLocation: "/create-account",
+    initialLocation: "/sign-in",
     routes: <RouteBase>[
       GoRoute(
         path: "/",
@@ -35,7 +35,7 @@ class MyAppRouter {
         ),
       ),
       GoRoute(
-        path: '/signIn',
+        path: "/sign-in",
         name: "signIn",
         builder: (context, state) => SignInPage(
           key: state.pageKey,
