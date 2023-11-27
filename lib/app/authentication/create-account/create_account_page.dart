@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
 import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/bottom_layout_container.dart';
@@ -71,6 +72,7 @@ class CreateAccountPage extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         print("Sign In button pressed");
+                        context.go("/sign-in");
                       },
                       child: const Text(
                         "Sign In",
