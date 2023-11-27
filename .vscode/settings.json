@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["laundrydrop", "tabnavigationbar"]
+  "cSpell.words": ["laundrydrop", "supabase", "tabnavigationbar"],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
