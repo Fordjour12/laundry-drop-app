@@ -11,7 +11,7 @@ class MyAppRouter {
   final GoRouter router = GoRouter(
     // routes: [
     // ShellRoute(
-    initialLocation: "/starter",
+    initialLocation: "/create-account",
     routes: <RouteBase>[
       GoRoute(
         path: "/",
