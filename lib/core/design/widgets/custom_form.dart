@@ -7,11 +7,11 @@ class CustomForm extends StatelessWidget {
   final Function() onPressed;
 
   const CustomForm({
-    Key? key,
+    super.key,
     this.numberOfFields = 2,
     required this.buttonText,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final int numberOfFields;
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

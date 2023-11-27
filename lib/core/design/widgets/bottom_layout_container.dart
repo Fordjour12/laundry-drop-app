@@ -8,8 +8,7 @@ class BottomLayoutContainer extends StatelessWidget {
   // value should be in double (0.0 - 1.0   1.0 = 100%)
   final double? height;
 
-  const BottomLayoutContainer({Key? key, required this.child, this.height})
-      : super(key: key);
+  const BottomLayoutContainer({super.key, required this.child, this.height});
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 
 class TabBottomNavigatorPage extends StatelessWidget {
   const TabBottomNavigatorPage(
-      {Key? key, required ValueKey<String> state, required this.child})
-      : super(key: key);
+      {super.key, required ValueKey<String> state, required this.child});
 
   final Widget child;
 

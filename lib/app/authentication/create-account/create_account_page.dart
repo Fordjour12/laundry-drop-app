@@ -6,7 +6,7 @@ import 'package:in.laundrydrop.app/core/design/widgets/bottom_layout_container.d
 import 'package:in.laundrydrop.app/core/design/widgets/custom_form.dart';
 
 class CreateAccountPage extends StatelessWidget {
-  const CreateAccountPage({Key? key}) : super(key: key);
+  const CreateAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {

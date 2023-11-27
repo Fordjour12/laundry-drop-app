@@ -5,7 +5,7 @@ import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_button.dart';
 
 class StartPage extends StatelessWidget {
-  const StartPage({Key? key}) : super(key: key);
+  const StartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
