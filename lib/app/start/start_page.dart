@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
@@ -12,15 +14,11 @@ class StartPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            alignment: Alignment.topCenter,
+          Image.asset(
+            "assets/image/laundry.jpeg",
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: MyAppColorSwatch.tertiaryColor,
-            child: const Text(
-              "Main container for image",
-              style: MyAppTypography.hd24b,
-            ),
+            fit: BoxFit.cover,
           ),
           Positioned(
             bottom: 0,
@@ -80,7 +78,7 @@ class StartPage extends StatelessWidget {
                       const SizedBox(height: 30),
                       CustomButton(
                         buttonText: "Sign In Account",
-                        onPressed: () => context.go("/signIn"),
+                        onPressed: () => context.go("/sign-in"),
                       ),
                     ],
                   ),
