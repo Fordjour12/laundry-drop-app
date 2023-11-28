@@ -13,15 +13,11 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            alignment: Alignment.topCenter,
+          Image.asset(
+            "assets/image/create_account.jpg",
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: MyAppColorSwatch.tertiaryColor,
-            child: const Text(
-              "Main container for image",
-              style: MyAppTypography.hd24b,
-            ),
+            fit: BoxFit.cover,
           ),
           BottomLayoutContainer(
             child: Column(
@@ -52,9 +48,9 @@ class SignInPage extends StatelessWidget {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 CustomForm(
                   buttonText: "Sign In",
-                  onPressed: () {
-                    print("Create Account button pressed");
-                  },
+                  // onPressed: () {
+                  // print("Create Account button pressed");
+                  // },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
