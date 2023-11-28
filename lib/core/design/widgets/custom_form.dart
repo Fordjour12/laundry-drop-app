@@ -1,16 +1,23 @@
+import 'dart:convert';
+import "dart:developer" as devtools show log;
+
 import 'package:flutter/material.dart';
+import 'package:in.laundrydrop.app/app/authentication/create-account/create_account.dart';
+import 'package:in.laundrydrop.app/app/authentication/create-account/create_account_repository.dart';
+import 'package:in.laundrydrop.app/app/authentication/create-account/create_account_service.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_button.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_input.dart';
+import 'package:in.laundrydrop.app/core/utils/auth_validation.dart';
+import 'package:in.laundrydrop.app/main.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CustomForm extends StatelessWidget {
   final String buttonText;
-  final Function() onPressed;
 
-  const CustomForm({
+  CustomForm({
     super.key,
     this.numberOfFields = 2,
     required this.buttonText,
-    required this.onPressed,
   });
 
   final int numberOfFields;
@@ -21,6 +28,29 @@ class CustomForm extends StatelessWidget {
       TextEditingController();
   static final TextEditingController _usernameController =
       TextEditingController();
+
+  final CreateAccountService authService =
+      CreateAccountService(CreateAccountRepository(supabase));
+
+  void auth(context) async {
+    try {
+      User? user = await authService.createNewAccount(CreateAccountModel(
+        email: _emailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text,
+      ));
+      print(user?.email.toString());
+      devtools.log(user.toString());
+    } on AuthException catch (error) {
+      devtools.log(error.message, name: "CreateAccountRepository");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(jsonEncode(error.message.toString())),
+          backgroundColor: Colors.yellow,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +65,8 @@ class CustomForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             controller: _emailController,
             onChanged: (value) {
-              _formKey.currentState!.validate();
+              // _formKey.currentState!.validate();
+              AuthValidation.validateEmail(value);
             },
           ),
           const SizedBox(height: 16),
@@ -47,6 +78,7 @@ class CustomForm extends StatelessWidget {
             controller: _passwordController,
             onChanged: (value) {
               _formKey.currentState!.validate();
+              AuthValidation.validatePassword(value);
             },
           ),
           const SizedBox(height: 16),
@@ -58,14 +90,19 @@ class CustomForm extends StatelessWidget {
               keyboardType: TextInputType.text,
               controller: _usernameController,
               onChanged: (value) {
-                _formKey.currentState!.validate();
+                // _formKey.currentState!.validate();
+                AuthValidation.validateUsername(value);
+                
               },
             ),
           const SizedBox(height: 20),
           CustomButton(
-            buttonText: buttonText,
-            onPressed: onPressed,
-          )
+              buttonText: buttonText,
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  auth(context);
+                }
+              })
         ],
       ),
     );

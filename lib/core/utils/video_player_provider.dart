@@ -6,10 +6,16 @@ class VideoPlayerProvider extends ChangeNotifier {
 
   VideoPlayerProvider() {
     controller = VideoPlayerController.asset('assets/videos/laundry.mp4')
-      ..initialize().then((_) {
-        notifyListeners();
-      });
+    ..initialize().then((_) {
+      notifyListeners();
+    });
     controller.play();
     controller.setLooping(true);
+  }
+
+  @override 
+  void dispose(){
+    controller.dispose();
+    super.dispose();
   }
 }
