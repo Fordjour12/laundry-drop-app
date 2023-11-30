@@ -39,7 +39,6 @@ class CustomForm extends StatelessWidget {
         password: _passwordController.text,
         username: _usernameController.text,
       ));
-      print(user?.email.toString());
       devtools.log(user.toString());
     } on AuthException catch (error) {
       devtools.log(error.message, name: "CreateAccountRepository");
