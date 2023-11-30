@@ -3,9 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/app/authentication/create-account/create_account_page.dart';
 import 'package:in.laundrydrop.app/app/authentication/login/sign_in_page.dart';
 import 'package:in.laundrydrop.app/app/authentication/reset-password/reset_password_page.dart';
+import 'package:in.laundrydrop.app/app/home/home_page.dart';
 import 'package:in.laundrydrop.app/app/settings/settings_page.dart';
 import 'package:in.laundrydrop.app/app/start/start_page.dart';
 import 'package:in.laundrydrop.app/app/welcome/welcome_page.dart';
+import 'package:in.laundrydrop.app/main.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyAppRouter {
   final GoRouter router = GoRouter(
@@ -19,6 +22,14 @@ class MyAppRouter {
         builder: (context, state) => WelcomePage(
           key: state.pageKey,
         ),
+        redirect: (context, state) {
+          bool userIsLoggedIn = checkUserSession(supabase);
+          if (userIsLoggedIn) {
+            return "/home";
+          } else {
+            return "/starter";
+          }
+        },
       ),
       GoRoute(
         path: "/starter",
@@ -55,12 +66,21 @@ class MyAppRouter {
           key: state.pageKey,
         ),
       ),
+      GoRoute(
+          path: "/home",
+          name: "home",
+          builder: (context, state) {
+            return HomePage(
+              key: state.pageKey,
+            );
+          }),
     ],
     // builder: (context, state, child) => TabBottomNavigatorPage(
     //   state: state.pageKey,
     //   child: child,
-    // ),
-    // ),
-    // ],
+    // )
   );
+  static bool checkUserSession(SupabaseClient supabase) {
+    return supabase.auth.currentSession?.user != null;
+  }
 }
