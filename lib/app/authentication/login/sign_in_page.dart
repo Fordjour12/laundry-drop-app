@@ -20,6 +20,7 @@ class SignInPage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           BottomLayoutContainer(
+            height: 0.58,
             child: Column(
               children: <Widget>[
                 const Column(
@@ -45,7 +46,7 @@ class SignInPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 CustomForm(
                   buttonText: "Sign In",
                   // onPressed: () {
