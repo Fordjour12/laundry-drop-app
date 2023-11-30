@@ -12,6 +12,7 @@ class CreateAccountRepository {
       email: userInfo.email,
       password: userInfo.password,
       data: {userInfo.username: userInfo.username},
+      emailRedirectTo: "io.supabase.flutterquickstart://login-callback/",
     );
     if (response.user != null) {
       print("User created successfully");
