@@ -3,8 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/core/constants/color_constants.dart';
 import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_button.dart';
-import 'package:in.laundrydrop.app/core/utils/video_player_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -12,8 +10,8 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final VideoPlayerProvider videoPlayerProvider =
-        Provider.of<VideoPlayerProvider>(context, listen: true);
+    // final VideoPlayerProvider videoPlayerProvider =
+    // Provider.of<VideoPlayerProvider>(context, listen: true);
     return Scaffold(
       body: Stack(
         children: [
@@ -22,7 +20,7 @@ class WelcomePage extends StatelessWidget {
           //     return VideoPlayer(value.controller);
           //   }),
           // ),
-          VideoPlayer(videoPlayerProvider.controller),
+          // VideoPlayer(videoPlayerProvider.controller),
           Positioned(
             bottom: 0,
             child: Container(
