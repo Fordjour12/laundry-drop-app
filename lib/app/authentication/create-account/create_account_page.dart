@@ -21,7 +21,7 @@ class CreateAccountPage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             BottomLayoutContainer(
-              height: 0.62,
+              height: 0.69,
               child: Column(
                 children: <Widget>[
                   const Column(
@@ -47,7 +47,7 @@ class CreateAccountPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   CustomForm(
                     numberOfFields: 3,
                     buttonText: "Create Account",
@@ -65,7 +65,6 @@ class CreateAccountPage extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          print("Sign In button pressed");
                           context.go("/sign-in");
                         },
                         child: const Text(
