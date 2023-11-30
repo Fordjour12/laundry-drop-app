@@ -39,6 +39,17 @@ class CustomForm extends StatelessWidget {
         password: _passwordController.text,
         username: _usernameController.text,
       ));
+
+      if (user != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "${jsonEncode(user.email?.toLowerCase())} verify your email to get logged in",
+            ),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
       devtools.log(user.toString());
     } on AuthException catch (error) {
       devtools.log(error.message, name: "CreateAccountRepository");
@@ -91,7 +102,6 @@ class CustomForm extends StatelessWidget {
               onChanged: (value) {
                 // _formKey.currentState!.validate();
                 AuthValidation.validateUsername(value);
-                
               },
             ),
           const SizedBox(height: 20),
