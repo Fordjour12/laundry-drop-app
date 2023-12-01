@@ -19,6 +19,13 @@ void main() async {
   );
   // this line is temporary for testing purpose
   await Future.delayed(const Duration(seconds: 3));
+  supabase.auth.onAuthStateChange.listen((event) {
+    if (event.session != null) {
+      MyAppRouter().router.go('/home');
+    } else {
+      MyAppRouter().router.go('/starter');
+    }
+  });
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
