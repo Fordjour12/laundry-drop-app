@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:go_router/go_router.dart';
 import 'package:in.laundrydrop.app/app/authentication/create-account/create_account_page.dart';
 import 'package:in.laundrydrop.app/app/authentication/login/sign_in_page.dart';
@@ -6,31 +5,24 @@ import 'package:in.laundrydrop.app/app/authentication/reset-password/reset_passw
 import 'package:in.laundrydrop.app/app/home/home_page.dart';
 import 'package:in.laundrydrop.app/app/settings/settings_page.dart';
 import 'package:in.laundrydrop.app/app/start/start_page.dart';
+import 'package:in.laundrydrop.app/app/tabnavigationbar/tab_bottom_navigator_page.dart';
 import 'package:in.laundrydrop.app/app/welcome/welcome_page.dart';
 import 'package:in.laundrydrop.app/main.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyAppRouter {
   final GoRouter router = GoRouter(
-    // routes: [
-    // ShellRoute(
     initialLocation: "/",
     routes: <RouteBase>[
       GoRoute(
-        path: "/",
-        name: "welcome",
-        builder: (context, state) => WelcomePage(
-          key: state.pageKey,
-        ),
-        redirect: (context, state) {
-          bool userIsLoggedIn = checkUserSession(supabase);
-          if (userIsLoggedIn) {
-            return "/home";
-          } else {
-            return "/starter";
-          }
-        },
-      ),
+          path: "/",
+          name: "welcome",
+          builder: (context, state) => WelcomePage(
+                key: state.pageKey,
+              ),
+          redirect: (context, state) {
+            final session = supabase.auth.currentSession;
+            return session != null ? '/home' : '/starter';
+          }),
       GoRoute(
         path: "/starter",
         name: "starter",
@@ -66,21 +58,33 @@ class MyAppRouter {
           key: state.pageKey,
         ),
       ),
-      GoRoute(
-          path: "/home",
-          name: "home",
-          builder: (context, state) {
-            return HomePage(
-              key: state.pageKey,
+      ShellRoute(
+          routes: <RouteBase>[
+            GoRoute(
+              path: "/home",
+              name: "home",
+              builder: (context, state) {
+                return HomePage(
+                  key: state.pageKey,
+                );
+              },
+            ),
+          ],
+          builder: (context, state, child) {
+            return TabBottomNavigatorPage(
+              state: state.pageKey,
+              child: child,
             );
           }),
     ],
-    // builder: (context, state, child) => TabBottomNavigatorPage(
-    //   state: state.pageKey,
-    //   child: child,
-    // )
   );
-  static bool checkUserSession(SupabaseClient supabase) {
-    return supabase.auth.currentSession?.user != null;
-  }
+
+  // static Future<bool> isUserLoggedIn(BuildContext context) async {
+  //   final session = supabase.auth.currentSession;
+  //   if (session != null) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }
