@@ -40,7 +40,7 @@ dependencies:
   provider: ^6.1.1
   http: ^1.1.0
   dio: ^5.3.4
-  supabase_flutter: ^1.10.25
+  supabase_flutter: ^2.0.1
   video_player: ^2.7.2
 
 dev_dependencies:
