@@ -32,7 +32,13 @@ class CustomForm extends StatelessWidget {
   final CreateAccountService authService =
       CreateAccountService(CreateAccountRepository(supabase));
 
-  void auth(context) async {
+  void authSignIn() {
+    devtools.log("authSignIn not implemented yet");
+
+    print("authSignIn not implemented yet");
+  }
+
+  void authCreateAccount(context) async {
     try {
       User? user = await authService.createNewAccount(CreateAccountModel(
         email: _emailController.text,
@@ -56,7 +62,7 @@ class CustomForm extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(jsonEncode(error.message.toString())),
-          backgroundColor: Colors.yellow,
+          backgroundColor: Colors.red.shade900,
         ),
       );
     }
@@ -75,7 +81,6 @@ class CustomForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             controller: _emailController,
             onChanged: (value) {
-              // _formKey.currentState!.validate();
               AuthValidation.validateEmail(value);
             },
           ),
@@ -87,7 +92,6 @@ class CustomForm extends StatelessWidget {
             keyboardType: TextInputType.visiblePassword,
             controller: _passwordController,
             onChanged: (value) {
-              _formKey.currentState!.validate();
               AuthValidation.validatePassword(value);
             },
           ),
@@ -100,18 +104,22 @@ class CustomForm extends StatelessWidget {
               keyboardType: TextInputType.text,
               controller: _usernameController,
               onChanged: (value) {
-                // _formKey.currentState!.validate();
                 AuthValidation.validateUsername(value);
               },
             ),
           const SizedBox(height: 20),
           CustomButton(
-              buttonText: buttonText,
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  auth(context);
+            buttonText: buttonText,
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                if (buttonText == "Create Account") {
+                  authCreateAccount(context);
+                } else if (buttonText == "Sign In") {
+                  authSignIn();
                 }
-              })
+              }
+            },
+          )
         ],
       ),
     );

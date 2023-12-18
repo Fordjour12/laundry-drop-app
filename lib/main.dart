@@ -15,10 +15,17 @@ void main() async {
     anonKey:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15bHl5cm9ocnRtaXVqa3hvbXN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg1MzMyMjgsImV4cCI6MjAxNDEwOTIyOH0.VCG5tWxkUtv6w9jaayfUsnOfAgkFkHr3-bPJMYDXUlg",
     url: "https://mylyyrohrtmiujkxomsw.supabase.co",
-    authFlowType: AuthFlowType.pkce,
+    //authFlowType: AuthFlowType.pkce,
   );
   // this line is temporary for testing purpose
   await Future.delayed(const Duration(seconds: 3));
+  supabase.auth.onAuthStateChange.listen((event) {
+    if (event.session != null) {
+      MyAppRouter().router.go('/home');
+    } else {
+      MyAppRouter().router.go('/starter');
+    }
+  });
   FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
