@@ -14,7 +14,7 @@ class TabBottomNavigatorPage extends StatelessWidget {
     final TabBottomNavigatorController tabBottomNavigatorController =
         Provider.of<TabBottomNavigatorController>(context);
     final GoRouter router = GoRouter.of(context);
-    final List<String> routes = ['/home', '/profile'];
+    final List<String> routes = ['/home', '/settings'];
 
     return Scaffold(
       body: child,
