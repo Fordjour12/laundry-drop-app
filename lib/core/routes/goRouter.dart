@@ -51,13 +51,6 @@ class MyAppRouter {
           key: state.pageKey,
         ),
       ),
-      GoRoute(
-        path: "/settings",
-        name: "settings",
-        builder: (context, state) => SettingsPage(
-          key: state.pageKey,
-        ),
-      ),
       ShellRoute(
           routes: <RouteBase>[
             GoRoute(
@@ -68,6 +61,13 @@ class MyAppRouter {
                   key: state.pageKey,
                 );
               },
+            ),
+            GoRoute(
+              path: "/settings",
+              name: "settings",
+              builder: (context, state) => SettingsPage(
+                key: state.pageKey,
+              ),
             ),
           ],
           builder: (context, state, child) {
