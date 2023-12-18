@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:in.laundrydrop.app/app/authentication/create-account/create_account.dart';
 import 'package:in.laundrydrop.app/app/authentication/create-account/create_account_repository.dart';
 import 'package:in.laundrydrop.app/app/authentication/create-account/create_account_service.dart';
+import 'package:in.laundrydrop.app/app/authentication/login/sign_in.dart';
+import 'package:in.laundrydrop.app/app/authentication/login/sign_in_respository.dart';
+import 'package:in.laundrydrop.app/app/authentication/login/sign_in_service.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_button.dart';
 import 'package:in.laundrydrop.app/core/design/widgets/custom_input.dart';
 import 'package:in.laundrydrop.app/core/utils/auth_validation.dart';
@@ -32,10 +35,42 @@ class CustomForm extends StatelessWidget {
   final CreateAccountService authService =
       CreateAccountService(CreateAccountRepository(supabase));
 
-  void authSignIn() {
-    devtools.log("authSignIn not implemented yet");
+  final SignInServices signInService =
+      SignInServices(SignInRepository(supabase));
 
-    print("authSignIn not implemented yet");
+  void authSignIn(context) async {
+    try {
+      User? user = await signInService.signIn(SignInModel(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ));
+      if (user != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "${jsonEncode(user.email?.toLowerCase())} logged in",
+            ),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } on AuthException catch (error) {
+      devtools.log(error.message, name: "SignInRepository");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(jsonEncode(error.message.toString())),
+          backgroundColor: Colors.red.shade900,
+        ),
+      );
+    } catch (error) {
+      devtools.log(error.toString(), name: "SignInRepository");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(jsonEncode(error.toString())),
+          backgroundColor: Colors.red.shade900,
+        ),
+      );
+    }
   }
 
   void authCreateAccount(context) async {
@@ -115,7 +150,7 @@ class CustomForm extends StatelessWidget {
                 if (buttonText == "Create Account") {
                   authCreateAccount(context);
                 } else if (buttonText == "Sign In") {
-                  authSignIn();
+                  authSignIn(context);
                 }
               }
             },
