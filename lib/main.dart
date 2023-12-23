@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:in.laundrydrop.app/app/tabnavigationbar/tab_bottom_navigator_controller.dart';
 import 'package:in.laundrydrop.app/core/routes/goRouter.dart';
@@ -7,15 +8,14 @@ import 'package:in.laundrydrop.app/core/utils/video_player_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() async {
+Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await Supabase.initialize(
-    anonKey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15bHl5cm9ocnRtaXVqa3hvbXN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg1MzMyMjgsImV4cCI6MjAxNDEwOTIyOH0.VCG5tWxkUtv6w9jaayfUsnOfAgkFkHr3-bPJMYDXUlg",
-    url: "https://mylyyrohrtmiujkxomsw.supabase.co",
-    //authFlowType: AuthFlowType.pkce,
+    anonKey: dotenv.env['ANON_KEY']!,
+    url: dotenv.env['URL_KEY']!,
   );
   // this line is temporary for testing purpose
   await Future.delayed(const Duration(seconds: 3));
