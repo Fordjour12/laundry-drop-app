@@ -1,8 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:in.laundrydrop.app/core/constants/text_constants.dart';
-import 'package:in.laundrydrop.app/main.dart';
-import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,44 +9,64 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                "HomePage",
-                style: MyAppTypography.body1,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print("Sign Out");
-                supabase.auth.signOut();
-                Provider.of<Auth>(context, listen: false).setUser(null);
-              },
-              child: const Text(
-                "Sign Out",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: const SafeArea(
+          child: MapSample(),
+        ));
   }
 }
 
-class Auth with ChangeNotifier {
-  User? _user;
+class MapSample extends StatefulWidget {
+  const MapSample({super.key});
 
-  User? get user => _user;
+  @override
+  State<MapSample> createState() => MapSampleState();
+}
 
-  void setUser(User? user) {
-    _user = user;
-    notifyListeners();
+class MapSampleState extends State<MapSample> {
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
+
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(
+      37.42796133580664,
+      -122.085749655962,
+    ),
+    zoom: 14.4746,
+  );
+
+  static const CameraPosition _kLake = CameraPosition(
+    bearing: 192.8334901395799,
+    target: LatLng(37.43296265331129, -122.08832357078792),
+    tilt: 59.440717697143555,
+    zoom: 19.151926040649414,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GoogleMap(
+        cloudMapId: "32ab8fdf5eedf0d6",
+        buildingsEnabled: true,
+        // mapType: MapType.hybrid,
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _goToTheLake,
+        label: const Text(
+          'To the lake!',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(Icons.directions_boat, color: Colors.white),
+      ),
+    );
+  }
+
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
