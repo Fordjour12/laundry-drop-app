@@ -3,7 +3,7 @@ import 'package:in.laundrydrop.app/app/authentication/create-account/create_acco
 import 'package:in.laundrydrop.app/app/authentication/login/sign_in_page.dart';
 import 'package:in.laundrydrop.app/app/authentication/reset-password/reset_password_page.dart';
 import 'package:in.laundrydrop.app/app/home/home_page.dart';
-import 'package:in.laundrydrop.app/app/settings/settings_page.dart';
+import 'package:in.laundrydrop.app/app/profile/profile_page.dart';
 import 'package:in.laundrydrop.app/app/start/start_page.dart';
 import 'package:in.laundrydrop.app/app/tabnavigationbar/tab_bottom_navigator_page.dart';
 import 'package:in.laundrydrop.app/app/welcome/welcome_page.dart';
@@ -63,9 +63,9 @@ class MyAppRouter {
               },
             ),
             GoRoute(
-              path: "/settings",
-              name: "settings",
-              builder: (context, state) => SettingsPage(
+              path: "/profile",
+              name: "profile",
+              builder: (context, state) => ProfilePage(
                 key: state.pageKey,
               ),
             ),
